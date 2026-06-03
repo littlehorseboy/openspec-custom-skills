@@ -24,6 +24,12 @@
 
 ### 擴充 Skills
 
+| Skill | 說明 |
+|-------|------|
+| `openspec-propose-design-mermaid-html` | `openspec-propose` 的擴充版，完成所有 artifacts 後額外產生互動式 `design.html` |
+| `openspec-design-html` | 從現有 change 的 artifacts 單獨產生 `design.html`，不重跑 propose |
+| `openspec-complete-archive-change` | 一鍵完成 tasks 打勾、specs 同步、archive，設計給已上 production 的場景 |
+
 ---
 
 #### `openspec-propose-design-mermaid-html`
