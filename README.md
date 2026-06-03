@@ -24,18 +24,37 @@
 
 ### 擴充 Skills
 
+---
+
 #### `openspec-propose-design-mermaid-html`
 
-`openspec-propose` 的擴充版。執行完全相同的 proposal → design → specs → tasks 流程，**所有 artifacts 完成後**，再額外產生一份 `design.html`，以互動式 Mermaid 圖表呈現設計內容。
+`openspec-propose` 的擴充版。執行完全相同的 proposal → design → specs → tasks 流程，**所有 artifacts 完成後**，再額外產生一份 `design.html`。
 
-頁面結構由 `assets/page-shell.html`（隨 skill 附帶）提供 CSS 與元件範本，依 design.md 內容挑選適合的 section：
+頁面 CSS 與元件範本由隨附的 `assets/page-shell.html` 提供，依 design.md 內容自動挑選適合的 section：
 
-- **必選**：Scope（Goals / Non-Goals）、Before vs After、Decisions + Risks
-- **按需**：Detail cards（多入口點，含程式碼片段）、Full diagram（class / ER / sequence / state）、Mapping table + 衍生圖、Background logic（共用但不修改的邏輯）
+| 類型 | Section |
+|------|---------|
+| 必選 | Scope（Goals / Non-Goals）、Before vs After、Decisions + Risks |
+| 按需 | Detail cards（多入口點 + 程式碼片段）、Mapping table + 衍生圖、Full diagram（class / ER / sequence / state）、Background logic |
 
-讓 reviewer 掃一眼就能理解 change 的全貌，不需要逐段讀 Markdown。
+讓 reviewer 掃一眼就能理解 change 的全貌，不需要逐段讀 Markdown。  
+適合：有多個入口點、狀態轉換、資料流向需要視覺化的 change。
 
-適合用在：有多個入口點、狀態轉換、資料流向需要視覺化說明的 change。
+---
+
+#### `openspec-design-html`
+
+從現有 change 的 artifacts 產生 `design.html`，**不重跑 propose 流程**。
+
+適合在以下情境單獨呼叫：
+
+- 執行了 `openspec-propose` 但當時沒產 HTML
+- 修改了 `design.md` 後想重新產出視覺頁
+- 想在 propose 之外的時機更新設計頁
+
+觸發語：`產 design.html`、`generate design html`、`visualize the change`、`幫我產設計頁`。
+
+---
 
 #### `openspec-complete-archive-change`
 
