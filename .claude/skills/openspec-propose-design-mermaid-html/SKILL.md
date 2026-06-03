@@ -40,12 +40,12 @@ After step 5 confirms all artifacts are done, proceed to step 6.
 
 ### What to read
 
-Read all available artifacts before generating — they are all complete at this point:
+All artifacts are complete at this point. Read what is NOT already in context:
 
-- `design.md` — required. Primary source for diagrams and decisions.
-- `proposal.md` — "What Changes" names the exact entry points to diagram.
-- `specs/**/spec.md` — WHEN/THEN scenarios that can become flowchart nodes.
-- `tasks.md` — read for scope context only (e.g. number of touch points, implementation layers). Do NOT render tasks or checkboxes in the HTML — design.html is a read-only visual reference, not a task tracker.
+- `design.md` — required. Primary source for diagrams and decisions. Re-read to get the final version.
+- `proposal.md` — already in context from step 4 (you just wrote it). Do NOT use the Read tool again; use what is already in context.
+- `specs/**/spec.md` — read with Read tool; WHEN/THEN scenarios that can become flowchart nodes.
+- `tasks.md` — read with Read tool for scope context only (e.g. number of touch points, implementation layers). Do NOT render tasks or checkboxes in the HTML — design.html is a read-only visual reference, not a task tracker.
 
 ### Where to write
 
