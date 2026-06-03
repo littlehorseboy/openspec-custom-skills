@@ -32,8 +32,7 @@ Do everything the standard `openspec-propose` skill does:
 4. Create each artifact in dependency order until all `applyRequires` are satisfied.
 5. `openspec status --change "<name>"` to confirm completion.
 
-One addition inside step 4: **immediately after writing `design.md`**, execute step 6 before
-continuing to the next artifact. Don't wait until all artifacts are done.
+After step 5 confirms all artifacts are done, proceed to step 6.
 
 ---
 
@@ -41,9 +40,12 @@ continuing to the next artifact. Don't wait until all artifacts are done.
 
 ### What to read
 
-- `design.md` — required. This is the primary source.
-- `specs/**/spec.md` — read if it exists; it adds scenario WHEN/THEN that can become flowchart nodes.
-- `proposal.md` — read if it exists; the "What Changes" section often names the exact entry points to diagram.
+Read all available artifacts before generating — they are all complete at this point:
+
+- `design.md` — required. Primary source for diagrams and decisions.
+- `proposal.md` — "What Changes" names the exact entry points to diagram.
+- `specs/**/spec.md` — WHEN/THEN scenarios that can become flowchart nodes.
+- `tasks.md` — read for scope context only (e.g. number of touch points, implementation layers). Do NOT render tasks or checkboxes in the HTML — design.html is a read-only visual reference, not a task tracker.
 
 ### Where to write
 

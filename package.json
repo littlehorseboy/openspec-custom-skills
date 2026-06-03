@@ -1,0 +1,29 @@
+{
+  "name": "@littlehorseboy/openspec-custom-skills",
+  "version": "1.0.0",
+  "description": "Custom Claude Code skills extending OpenSpec — Mermaid HTML design output and one-step change completion/archive",
+  "keywords": [
+    "openspec",
+    "claude-code",
+    "skills",
+    "mermaid",
+    "ai",
+    "design",
+    "spec-driven"
+  ],
+  "homepage": "https://github.com/littlehorseboy/openspec-custom-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littlehorseboy/openspec-custom-skills"
+  },
+  "license": "MIT",
+  "author": "littlehorseboy",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    ".claude",
+    "openspec",
+    "README.md"
+  ]
+}
