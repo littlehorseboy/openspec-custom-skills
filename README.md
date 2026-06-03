@@ -26,7 +26,12 @@
 
 #### `openspec-propose-design-mermaid-html`
 
-`openspec-propose` 的擴充版。在產出 `design.md` 之後，立即額外產生一份 `design.html`，以互動式 Mermaid 圖表呈現設計內容：Before/After 對比、入口點卡片、mapping 表、狀態圖等。
+`openspec-propose` 的擴充版。執行完全相同的 proposal → design → specs → tasks 流程，**所有 artifacts 完成後**，再額外產生一份 `design.html`，以互動式 Mermaid 圖表呈現設計內容。
+
+頁面結構由 `assets/page-shell.html`（隨 skill 附帶）提供 CSS 與元件範本，依 design.md 內容挑選適合的 section：
+
+- **必選**：Scope（Goals / Non-Goals）、Before vs After、Decisions + Risks
+- **按需**：Detail cards（多入口點，含程式碼片段）、Full diagram（class / ER / sequence / state）、Mapping table + 衍生圖、Background logic（共用但不修改的邏輯）
 
 讓 reviewer 掃一眼就能理解 change 的全貌，不需要逐段讀 Markdown。
 
