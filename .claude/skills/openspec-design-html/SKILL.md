@@ -88,6 +88,7 @@ Add these when the content signals them:
 | "API call / request / response sequence" | Sequence diagram |
 | "data model / schema / table" changes | ER diagram |
 | Hierarchical categories or config trees | Tree view |
+| Change spans multiple dimensions / concepts need a conceptual overview | Mind map |
 
 ### ⑦ Background Logic Diagram
 
@@ -155,6 +156,22 @@ subgraph SG1["Group Name"]
 
 **Keep node labels short** (under ~30 chars).
 
+**Mindmap — indentation is the only syntax:**
+```
+mindmap
+  root((Change Name))
+    Topic A
+      Sub-item 1
+      Sub-item 2
+    Topic B
+      Sub-item 3
+```
+- No arrows, no special characters that need quoting — just consistent 2-space indentation per level.
+- `root((...))` renders as a circle; `root[...]` as a box; `root(((...)))` as a double circle.
+- Keep labels short (under ~20 chars) — the radial layout breaks on long text.
+- Use mindmap as an overview card (e.g., "本次異動範圍") early in the page, alongside the scope section, rather than deep inside a before/after pair.
+- Mindmap does NOT support `style`, `classDef`, or `click` — do not add them.
+
 **Style only key nodes** — Red for "broken/missing", green for "fixed/added":
 ```
 style NodeX fill:#fce8e8,stroke:#dc3545,color:#7f1d1d
@@ -196,6 +213,7 @@ that visual similarity is intentional — it makes the delta obvious by subtract
 | Table schema / foreign key relationships | `erDiagram` |
 | API request/response between services | `sequenceDiagram` |
 | Config categories or hierarchical options | `block-beta` or `graph` |
+| Conceptual overview, feature taxonomy, requirement breakdown | `mindmap` |
 
 When in doubt, `flowchart LR` is the safest default.
 

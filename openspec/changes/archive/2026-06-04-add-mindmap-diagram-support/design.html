@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><!-- [CHANGE_NAME] --></title>
+<title>新增 mindmap 圖表類型支援</title>
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
@@ -108,255 +108,191 @@ code { font: 11px/1 'SFMono-Regular', Consolas, monospace;
 </head>
 <body>
 
-<!-- ═══ HEADER ═══════════════════════════════════════════════════════
-  Required fields: h1 (change name), .sub (one-line description)
-  Add .chip elements for key metadata (files affected, scope, etc.)
-═══════════════════════════════════════════════════════════════════ -->
 <div class="hdr">
   <div>
     <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;font-family:monospace">
       openspec · design.md
     </div>
-    <h1><!-- [CHANGE_NAME] --></h1>
-    <div class="sub"><!-- [ONE_LINE_DESCRIPTION] --></div>
+    <h1>新增 mindmap 圖表類型支援</h1>
+    <div class="sub">為兩個 design-html skill 補齊第七種 Mermaid 圖表類型，降低多維概覽場景的表達成本</div>
     <div class="chips">
-      <!-- Add .chip spans for metadata: affected files, scope, constraints -->
-      <!-- <span class="chip">example chip</span> -->
+      <span class="chip">4 個檔案修改</span>
+      <span class="chip">SKILL.md × 2</span>
+      <span class="chip">page-shell.html × 2</span>
+      <span class="chip">純加法 · 無破壞性</span>
     </div>
   </div>
 </div>
 
 <div class="wrap">
-<!-- ═══ SECTIONS GO HERE ═══════════════════════════════════════════
-  Available section patterns:
 
-  ① SCOPE CARD (Goals / Non-Goals)
-  ② BEFORE vs AFTER (cmp-grid, two Mermaid flowcharts)
-  ③ DETAIL CARDS (entry points, states, etc. — grid-auto or grid-3)
-  ④ DIAGRAM SECTION (full-width Mermaid — class, ER, sequence, state)
-  ⑤ MAPPING TABLE (for variable→field or input→output mappings)
-  ⑥ DECISIONS + RISKS (grid-2 with dec-item / risk-item)
-  ⑦ BACKGROUND LOGIC (shared/unchanged algorithm — context for Before vs After)
-  ⑧ MINDMAP (conceptual overview — change scope at a glance, feature taxonomy)
-
-  See comments below each pattern example for usage guidance.
-═══════════════════════════════════════════════════════════════════ -->
-
-<!-- EXAMPLE ⑦ — Background logic (shared/unchanged logic, context for the change)
-  Use when the Context section describes an algorithm that won't change but is
-  essential to understand the Before/After. Label it "（本次不修改）" so reviewer
-  knows it's read-only context, not something being altered. -->
-<!--
+<!-- ⑧ Mindmap — 本次異動範圍概覽 (meta: 用 mindmap 展示 mindmap 支援本身的修改範圍) -->
 <section>
-  <div class="sec-title">會員等級判斷邏輯（各入口共用，本次不修改）</div>
+  <div class="sec-title">本次異動範圍</div>
   <div class="card">
     <div class="mermaid">
-flowchart LR
-    A(["訂單建立"]) - -> B{"channel = 'WEB' ?"}
-    B -- 否 - -> S["MemberTier = 'S'"]
-    B -- 是 - -> C{"order_total >= 1000 ?"}
-    C -- 是 - -> L["MemberTier = 'P'"]
-    C -- 否 - -> S2["MemberTier = 'S'"]
-    L - -> Y(["isPremium = 'Y'"])
-    S - -> N(["isPremium = 'N'"])
-    S2 - -> N
-    style L fill:#fef9c3,stroke:#ca8a04
-    style Y fill:#dcfce7,stroke:#16a34a,color:#14532d,font-weight:bold
-    style N fill:#f3f4f6,stroke:#9ca3af
+mindmap
+  root((mindmap 支援))
+    SKILL.md
+      觸發條件列
+      選用表格列
+      語法規則區
+    page-shell.html
+      Section 索引
+      EXAMPLE 8
     </div>
   </div>
 </section>
--->
 
-<!-- EXAMPLE ① — Scope card (Goals / Non-Goals) -->
-<!--
+<!-- ① Scope -->
 <section>
   <div class="sec-title">範圍</div>
   <div class="grid-2">
     <div class="card">
       <div class="card-title" style="color:var(--green)">Goals</div>
       <div class="goal-list">
-        <div class="goal-item">具體目標一</div>
-        <div class="goal-item">具體目標二</div>
+        <div class="goal-item">AI 能在 design.html 中正確選用 mindmap 呈現多維概覽</div>
+        <div class="goal-item">提供明確的 mindmap 語法規則，避免生成不合法 Mermaid</div>
+        <div class="goal-item">openspec-propose-design-mermaid-html 與 openspec-design-html 兩個 skill 規則與模板保持一致</div>
       </div>
     </div>
     <div class="card">
       <div class="card-title" style="color:var(--muted)">Non-Goals</div>
       <div class="ng-list">
-        <div class="ng-item">明確排除項目一</div>
-        <div class="ng-item">明確排除項目二</div>
+        <div class="ng-item">不升級 Mermaid CDN 版本（Mermaid 11 已原生支援）</div>
+        <div class="ng-item">不修改 page-shell.html 的 CSS / JS</div>
+        <div class="ng-item">不影響其他五個 skill</div>
+        <div class="ng-item">不合併兩個 page-shell.html 為共用檔案</div>
       </div>
     </div>
   </div>
 </section>
--->
 
-<!-- EXAMPLE ② — Before vs After (most important section, always include) -->
-<!--
+<!-- ② Before vs After -->
 <section>
   <div class="sec-title">Before vs After</div>
   <div class="cmp-grid">
     <div class="cmp-panel before">
-      <div class="cmp-hdr">⚠ Before — 說明舊狀態或問題</div>
+      <div class="cmp-hdr">⚠ Before — 多維概覽需求無法對應</div>
       <div class="cmp-body">
         <div class="mermaid">
 flowchart TD
-    A["節點 A"] - -> B["節點 B"]
-    B - -> C["結果（有問題）"]
-    style C fill:#fce8e8,stroke:#dc3545,color:#7f1d1d
+    DM["design.md<br/>多維概覽需求"] --> AI["AI 讀 SKILL.md<br/>選圖表"]
+    AI --> FL["flowchart<br/>強制有方向"]
+    AI --> BB["block-beta<br/>語法複雜"]
+    AI --> MS["略過不生成<br/>section 缺失"]
+    style MS fill:#fce8e8,stroke:#dc3545,color:#7f1d1d
+    style FL fill:#fef9c3,stroke:#ca8a04
+    style BB fill:#fef9c3,stroke:#ca8a04
         </div>
       </div>
     </div>
     <div class="cmp-panel after">
-      <div class="cmp-hdr">✅ After — 說明新狀態或改善</div>
+      <div class="cmp-hdr">✅ After — mindmap 規則補齊</div>
       <div class="cmp-body">
         <div class="mermaid">
 flowchart TD
-    A["節點 A"] - -> B["節點 B（已修正）"]
-    B - -> C["結果（正確）"]
-    style C fill:#dcfce7,stroke:#16a34a,color:#14532d
+    DM["design.md<br/>多維概覽需求"] --> AI["AI 讀 SKILL.md<br/>選圖表"]
+    AI --> MM["mindmap<br/>無方向概覽"]
+    MM --> HTML["design.html<br/>mindmap section 正確生成"]
+    style MM fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style HTML fill:#dcfce7,stroke:#16a34a,color:#14532d
         </div>
       </div>
     </div>
   </div>
 </section>
--->
 
-<!-- EXAMPLE ③ — Detail cards grid (entry points / items)
-  Each card has: name + layer, Before/After badges, source variable,
-  code snippet showing the actual expression, and an implementation note.
-  Use .snippet for SQL/code, .snippet.hot for easy wins (yellow border).
-  Use .entry-note for ℹ hints; use .badge.b-yellow for ⚠ risks. -->
-<!--
+<!-- ⑤ 修改點對照表 -->
 <section>
-  <div class="sec-title">5 個入口 — 逐一對照</div>
-  <div class="grid-auto">
-    <div class="card">
-      <div style="font-family:monospace;font-size:11px;font-weight:600;word-break:break-all">SP_Order_Create</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:3px">SQL SP · INSERT order_info</div>
-      <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="badge b-red">INSERT 缺 isPremium</span>
-      </div>
-      <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="badge b-green">INSERT + isPremium</span>
-      </div>
-      <div style="margin-top:8px;font-size:11px">來源 <code>@IsPremium (BIT)</code></div>
-      <div class="snippet">
-        CASE WHEN @IsPremium=1<br>
-        &nbsp;THEN 'Y' ELSE 'N' END
-      </div>
-      <div class="entry-note">ℹ 已算好，直接引用</div>
-    </div>
-    <div class="card">
-      <div style="font-family:monospace;font-size:11px;font-weight:600;word-break:break-all">OrderService.cs</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:3px">C# · INSERT order_info</div>
-      <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="badge b-red">欄位清單缺 isPremium</span>
-      </div>
-      <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="badge b-green">INSERT + isPremium</span>
-      </div>
-      <div style="margin-top:8px;font-size:11px">來源 <code>@isPremium</code></div>
-      <div class="snippet hot">⚡ 參數已在 param 物件<br>只需補欄位宣告</div>
-      <div class="entry-note" style="margin-top:6px">
-        <span class="badge b-yellow">⚠ 需確認動態 SQL 相容</span>
-      </div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- EXAMPLE ④ — Full-width diagram (class / ER / sequence / state) -->
-<!--
-<section>
-  <div class="sec-title">資料模型 / 類別關係</div>
-  <div class="card">
-    <div class="mermaid">
-erDiagram
-    TABLE_A {
-        int id PK
-        varchar field1
-    }
-    TABLE_A ||--o{ TABLE_B : "has"
-    </div>
-  </div>
-</section>
--->
-
-<!-- EXAMPLE ⑤ — Mapping table + diagram side by side -->
-<!--
-<section>
-  <div class="sec-title">變數對應</div>
+  <div class="sec-title">修改點對照</div>
   <div class="grid-2">
     <div class="card">
+      <div class="card-title">SKILL.md — 兩個 skill 同步</div>
       <table class="data-table">
-        <thead><tr><th>來源</th><th>→</th><th>目標值</th></tr></thead>
+        <thead>
+          <tr><th>位置</th><th>新增內容</th></tr>
+        </thead>
         <tbody>
-          <tr><td><code>@var = 1</code></td><td>→</td><td><span class="badge b-green">'Y'</span></td></tr>
-          <tr><td><code>@var = 0</code></td><td>→</td><td><span class="badge b-gray">'N'</span></td></tr>
+          <tr>
+            <td>Section Selection Guide</td>
+            <td><span class="badge b-green">新增列</span>&nbsp; 多維概覽 → Mind map</td>
+          </tr>
+          <tr>
+            <td>Choosing Diagram Type</td>
+            <td><span class="badge b-green">新增列</span>&nbsp; <code>mindmap</code> — Radial hierarchy</td>
+          </tr>
+          <tr>
+            <td>Mermaid Diagram Rules</td>
+            <td><span class="badge b-green">新增區塊</span>&nbsp; 縮排語法 / 節點形狀 / 禁用指令</td>
+          </tr>
         </tbody>
       </table>
     </div>
     <div class="card">
-      <div class="mermaid">
-flowchart LR
-    V["@var"] - ->|"1 → 'Y'"| Y["目標 = Y"]
-    V - ->|"0 → 'N'"| N["目標 = N"]
-      </div>
+      <div class="card-title">page-shell.html — 兩個 skill 同步</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>位置</th><th>新增內容</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Section 索引 comment</td>
+            <td><span class="badge b-green">補齊</span>&nbsp; ⑦ Background Logic、⑧ Mindmap</td>
+          </tr>
+          <tr>
+            <td>EXAMPLE ⑧</td>
+            <td><span class="badge b-green">新增</span>&nbsp; mindmap HTML 範例 comment block</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
--->
 
-<!-- EXAMPLE ⑧ — Mindmap (conceptual overview / change scope at a glance)
-  Use when the change spans multiple dimensions or needs a "scope at a glance" view.
-  Place after the Scope section (before Before vs After), or as a standalone overview.
-  Indentation (2 spaces per level) is the ONLY structure — no arrows, no style, no classDef.
-  root((...)) = circle  root[...] = box  root(((...))).= double circle -->
-<!--
-<section>
-  <div class="sec-title">本次異動範圍</div>
-  <div class="card">
-    <div class="mermaid">
-mindmap
-  root((Change Name))
-    Topic A
-      Sub-item 1
-      Sub-item 2
-    Topic B
-      Sub-item 3
-    </div>
-  </div>
-</section>
--->
-
-<!-- EXAMPLE ⑥ — Decisions + Risks -->
-<!--
+<!-- ⑥ Decisions + Risks -->
 <section>
   <div class="sec-title">技術決策 ／ 風險</div>
   <div class="grid-2">
     <div class="card">
       <div class="card-title" style="color:var(--blue)">技術決策</div>
       <div class="dec-item">
-        <div class="dec-title">決策 1 ｜選擇方案名稱</div>
-        <div class="item-body">說明為什麼選這個方案。</div>
-        <div class="alt">✗ 棄用：其他方案 → 原因</div>
+        <div class="dec-title">D1 ｜純加法，不重寫現有規則</div>
+        <div class="item-body">在兩張表各補一列、Mermaid Rules 加獨立區塊，不動現有段落，零破壞性風險。</div>
+        <div class="alt">✗ 棄用：合併入 block-beta 列說明 → 語意模糊，AI 難以區分選用場景</div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-title">D2 ｜Section Guide + 圖表表格雙觸發</div>
+        <div class="item-body">兩張表同時新增 mindmap。Guide 決定「加不加 section」，表格決定「用哪種圖表語法」，缺一則 AI 不會主動選用。</div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-title">D3 ｜mindmap 定位為 Scope 旁概覽，禁入 Before/After</div>
+        <div class="item-body">mindmap 不支援 <code>style</code>，無法產生紅/綠對比節點；強放入 <code>cmp-panel</code> 會破壞視覺結構。</div>
       </div>
     </div>
     <div class="card">
       <div class="card-title" style="color:var(--yellow)">風險</div>
       <div class="risk-item">
-        <div class="risk-title">⚠ 風險名稱</div>
-        <div class="item-body">風險說明。</div>
-        <div class="mitigation">→ 緩解措施</div>
+        <div class="risk-title">⚠ label 過長導致 radial layout 破版</div>
+        <div class="item-body">mindmap 節點文字超長時 SVG 渲染溢出或重疊。</div>
+        <div class="mitigation">→ SKILL.md 明確限制 label &lt; 20 chars</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-title">⚠ AI 濫用 mindmap 取代 flowchart</div>
+        <div class="item-body">mindmap 無方向性，誤用在有流程的場景會失去因果表達。</div>
+        <div class="mitigation">→ 觸發訊號限定「多維概覽」，與 flowchart「資料流 / 程式路徑」明確區隔</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-title">⚠ 兩個 page-shell.html 未來漂移</div>
+        <div class="item-body">手動維護兩份相同檔案，後續修改易產生差異。</div>
+        <div class="mitigation">→ 此次同步更新（MD5 驗證一致）；共用單一 shell 為未來獨立 change</div>
       </div>
     </div>
   </div>
 </section>
--->
 
 </div><!-- /wrap -->
 
-<div class="footer"><!-- [CHANGE_PATH] -->/design.html</div>
+<div class="footer">openspec/changes/add-mindmap-diagram-support/design.html</div>
 </body>
 </html>

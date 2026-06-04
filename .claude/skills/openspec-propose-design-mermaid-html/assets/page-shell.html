@@ -136,6 +136,8 @@ code { font: 11px/1 'SFMono-Regular', Consolas, monospace;
   ④ DIAGRAM SECTION (full-width Mermaid — class, ER, sequence, state)
   ⑤ MAPPING TABLE (for variable→field or input→output mappings)
   ⑥ DECISIONS + RISKS (grid-2 with dec-item / risk-item)
+  ⑦ BACKGROUND LOGIC (shared/unchanged algorithm — context for Before vs After)
+  ⑧ MINDMAP (conceptual overview — change scope at a glance, feature taxonomy)
 
   See comments below each pattern example for usage guidance.
 ═══════════════════════════════════════════════════════════════════ -->
@@ -301,6 +303,28 @@ flowchart LR
     V["@var"] - ->|"1 → 'Y'"| Y["目標 = Y"]
     V - ->|"0 → 'N'"| N["目標 = N"]
       </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- EXAMPLE ⑧ — Mindmap (conceptual overview / change scope at a glance)
+  Use when the change spans multiple dimensions or needs a "scope at a glance" view.
+  Place after the Scope section (before Before vs After), or as a standalone overview.
+  Indentation (2 spaces per level) is the ONLY structure — no arrows, no style, no classDef.
+  root((...)) = circle  root[...] = box  root(((...))).= double circle -->
+<!--
+<section>
+  <div class="sec-title">本次異動範圍</div>
+  <div class="card">
+    <div class="mermaid">
+mindmap
+  root((Change Name))
+    Topic A
+      Sub-item 1
+      Sub-item 2
+    Topic B
+      Sub-item 3
     </div>
   </div>
 </section>
