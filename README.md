@@ -2,12 +2,55 @@
 
 基於 [OpenSpec](https://github.com/Fission-AI/OpenSpec/) 的個人擴充 skills，加了視覺化設計頁面與一鍵 archive 流程，並搭配繁體中文輸出的 config。
 
+## 前置需求
+
+本套件基於 [OpenSpec](https://github.com/Fission-AI/OpenSpec/)，使用前需先完成 OpenSpec 安裝與初始化。
+
+**需求**：Node.js 20.19.0 以上
+
+```bash
+npm install -g @fission-ai/openspec@latest
+```
+
+進入你的專案目錄後初始化：
+
+```bash
+cd your-project
+openspec init
+```
+
+選擇 **Claude Code** 後會在專案中建立 `.claude/skills/`（原生 skills）與 `openspec/` 目錄。  
+建議：保留 skills 資料夾，移除 commands 資料夾（依個人使用場景決定）。  
+兩種整合方式的差異說明：[Supported Tools](https://github.com/Fission-AI/OpenSpec/blob/main/docs/supported-tools.md)。
+
+詳細說明請參考 [OpenSpec 文件](https://github.com/Fission-AI/OpenSpec/blob/main/docs/getting-started.md)。
+
+**基本工作流程**
+
+```
+/openspec-propose ──► /openspec-apply-change ──► /openspec-archive-change
+```
+
+`openspec init` 後的目錄結構：
+
+```
+openspec/
+├── specs/              # 系統當前行為的 source of truth
+├── changes/            # 每個 change 一個資料夾
+│   └── <change-name>/
+│       ├── proposal.md   # why & what
+│       ├── design.md     # how（技術方案）
+│       ├── tasks.md      # 實作 checklist
+│       └── specs/        # delta specs（此次異動）
+└── config.yaml         # 專案設定（選填）
+```
+
+---
+
 ## 使用方式
 
 把想要的 skill 複製到你的專案 `.claude/skills/` 目錄下即可。  
 `openspec/config.yaml` 可複製到你的專案 `openspec/config.yaml` 覆蓋語言設定。
-
-需要先安裝 [OpenSpec CLI](https://github.com/Fission-AI/OpenSpec/)。
 
 ---
 
@@ -59,6 +102,8 @@
 - 想在 propose 之外的時機更新設計頁
 
 觸發語：`產 design.html`、`generate design html`、`visualize the change`、`幫我產設計頁`。
+
+![openspec-design-html 展示](assets/design-html-preview.png)
 
 ---
 
