@@ -1,5 +1,8 @@
 # openspec-custom-skills
 
+[![GitHub release](https://img.shields.io/github/v/release/littlehorseboy/openspec-custom-skills.svg)](https://github.com/littlehorseboy/openspec-custom-skills/releases)
+[![License](https://img.shields.io/github/license/littlehorseboy/openspec-custom-skills.svg)](LICENSE)
+
 基於 [OpenSpec](https://github.com/Fission-AI/OpenSpec/) 的個人擴充 skills，加了視覺化設計頁面與一鍵 archive 流程，並搭配繁體中文輸出的 config。
 
 ## 前置需求
@@ -84,7 +87,31 @@ openspec/
 | 類型 | Section |
 |------|---------|
 | 必選 | Scope（Goals / Non-Goals）、Before vs After、Decisions + Risks |
-| 按需 | Detail cards（多入口點 + 程式碼片段）、Mapping table + 衍生圖、Full diagram（class / ER / sequence / state）、Background logic |
+
+**按需（依設計內容自動選用）**
+
+- Detail cards — 多入口點 + 程式碼片段（逐一展示各 SP / API / 服務的變更）
+- Mapping table — 來源變數 → 目標欄位對應表
+- 衍生圖 — 分層彙流 flowchart
+- Full diagrams（依設計主題選用）：
+  - class diagram（類別圖）
+  - ER diagram（實體關係圖）
+  - sequence diagram（序列圖）
+  - state diagram（狀態圖）
+- Background logic — 共用邏輯脈絡（本次不修改）
+
+圖表由 [Mermaid](https://mermaid.js.org/) 渲染，支援以下類型：
+
+| 類型 Type | 中文名稱 | 文件 Docs |
+|-----------|----------|-----------|
+| `flowchart` | 流程圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/flowchart.html) |
+| `sequenceDiagram` | 序列圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/sequenceDiagram.html) |
+| `classDiagram` | 類別圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/classDiagram.html) |
+| `stateDiagram` | 狀態圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/stateDiagram.html) |
+| `erDiagram` | 實體關係圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/entityRelationshipDiagram.html) |
+| `requirementDiagram` | 需求圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/requirementDiagram.html) |
+| `treeView` | 樹狀視圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/treeView.html) |
+| `mindmap` | 心智圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/mindmap.html) |
 
 讓 reviewer 掃一眼就能理解 change 的全貌，不需要逐段讀 Markdown。  
 適合：有多個入口點、狀態轉換、資料流向需要視覺化的 change。
@@ -102,6 +129,8 @@ openspec/
 - 想在 propose 之外的時機更新設計頁
 
 觸發語：`產 design.html`、`generate design html`、`visualize the change`、`幫我產設計頁`。
+
+產出圖表類型與 Mermaid 文件連結請參閱 [`openspec-propose-design-mermaid-html`](#openspec-propose-design-mermaid-html) 圖表說明。
 
 ![openspec-design-html 展示](assets/design-html-preview.png)
 
