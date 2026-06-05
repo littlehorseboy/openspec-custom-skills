@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>readme-badges-license-docs</title>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+</script>
+<style>
+/* ── Design tokens ── */
+:root {
+  --red: #dc3545; --red-bg: #fff1f1; --red-bd: #f8c4c7;
+  --green: #16a34a; --green-bg: #f0fdf4; --green-bd: #a3d9b5;
+  --blue: #2563eb; --blue-bg: #eff6ff; --blue-bd: #bfdbfe;
+  --yellow: #d97706; --yellow-bg: #fffbeb; --yellow-bd: #fde68a;
+  --gray: #6b7280; --gray-bg: #f9fafb; --gray-bd: #e5e7eb;
+  --text: #111827; --muted: #6b7280; --border: #e5e7eb;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f1f5f9; color: var(--text); font: 13px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+/* ── Header ── */
+.hdr { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); color: #fff; padding: 22px 32px; }
+.hdr h1 { font-size: 20px; font-weight: 700; letter-spacing: -.3px; margin-bottom: 4px; }
+.hdr .sub { color: rgba(255,255,255,.55); font-size: 12px; }
+.hdr .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chip { padding: 2px 9px; border-radius: 4px; font-size: 11px; font-weight: 600;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.85); }
+
+/* ── Layout ── */
+.wrap { max-width: 1320px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 22px; }
+.sec-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+/* ── Grid helpers ── */
+.grid-2   { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+
+/* ── Card ── */
+.card { background: #fff; border-radius: 10px; border: 1px solid var(--border);
+  padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+.card-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+
+/* ── Compare panels (Before / After) ── */
+.cmp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cmp-panel { border-radius: 10px; border: 2px solid; overflow: hidden; background: #fff; }
+.cmp-panel.before { border-color: var(--red); }
+.cmp-panel.after  { border-color: var(--green); }
+.cmp-hdr { padding: 9px 14px; font-weight: 700; font-size: 12px; }
+.before .cmp-hdr { background: var(--red-bg);   color: #7f1d1d; }
+.after  .cmp-hdr { background: var(--green-bg); color: #14532d; }
+.cmp-body { padding: 12px; }
+
+/* ── Badges ── */
+.badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.b-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bd); }
+.b-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+.b-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bd); }
+.b-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bd); }
+.b-gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-bd); }
+
+/* ── Inline code ── */
+code { font: 11px/1 'SFMono-Regular', Consolas, monospace;
+  background: #f3f4f6; padding: 1px 5px; border-radius: 3px; color: #be123c; }
+
+/* ── Goal / Non-goal lists ── */
+.goal-list, .ng-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.goal-item, .ng-item { display: flex; gap: 8px; padding: 7px 10px; border-radius: 6px; font-size: 12px; align-items: flex-start; }
+.goal-item { background: var(--green-bg); border: 1px solid var(--green-bd); color: #14532d; }
+.goal-item::before { content: '✓'; font-weight: 700; flex-shrink: 0; color: var(--green); }
+.ng-item   { background: var(--gray-bg);  border: 1px solid var(--gray-bd);  color: var(--muted); }
+.ng-item::before   { content: '✗'; font-weight: 700; flex-shrink: 0; }
+
+/* ── Decision / Risk items ── */
+.dec-item  { padding: 11px 13px; border-radius: 7px; background: var(--blue-bg);   border: 1px solid var(--blue-bd);   margin-bottom: 10px; }
+.risk-item { padding: 11px 13px; border-radius: 7px; background: var(--yellow-bg); border: 1px solid var(--yellow-bd); margin-bottom: 10px; }
+.dec-title  { font-weight: 700; font-size: 12px; color: #1d4ed8; margin-bottom: 5px; }
+.risk-title { font-weight: 700; font-size: 12px; color: #92400e; margin-bottom: 5px; }
+.item-body  { font-size: 12px; color: #374151; }
+.alt { margin-top: 7px; font-size: 11px; color: var(--muted); padding: 5px 8px; background: #fff; border-radius: 4px; border-left: 3px solid var(--gray-bd); }
+.mitigation { margin-top: 7px; font-size: 11px; color: var(--green); padding: 5px 8px; background: var(--green-bg); border-radius: 4px; }
+
+/* ── Table ── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.data-table th { background: #f8fafc; padding: 8px 12px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px; color: var(--muted); border-bottom: 2px solid var(--border); text-align: left; }
+.data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--gray-bg); }
+
+/* ── Mermaid ── */
+.mermaid { text-align: center; }
+.mermaid svg { max-width: 100%; }
+
+/* ── Footer ── */
+.footer { text-align: center; padding: 12px 0 8px; font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;font-family:monospace">
+      openspec · design.md
+    </div>
+    <h1>readme-badges-license-docs</h1>
+    <div class="sub">新增開源徽章、MIT LICENSE 文件，並改進 README 的 design.html 圖表說明</div>
+    <div class="chips">
+      <span class="chip">3 個檔案</span>
+      <span class="chip">純文件異動</span>
+      <span class="chip">無 SKILL.md 修改</span>
+      <span class="chip">npm publish 友善</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ⑧ Mindmap — 異動範圍概覽 -->
+<section>
+  <div class="sec-title">本次異動範圍</div>
+  <div class="card">
+    <div class="mermaid">
+mindmap
+  root((本次異動))
+    README.md
+      徽章區塊
+      propose 說明擴充
+      design-html 指向
+    LICENSE
+      MIT 2026
+      littlehorseboy
+    package.json
+      files 補 LICENSE
+    </div>
+  </div>
+</section>
+
+<!-- ① Scope -->
+<section>
+  <div class="sec-title">範圍</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title" style="color:var(--green)">Goals</div>
+      <div class="goal-list">
+        <div class="goal-item">README 頂部加入 GitHub release 版本徽章 + MIT 授權徽章</div>
+        <div class="goal-item">repo 根目錄新增標準 MIT <code>LICENSE</code> 文件</div>
+        <div class="goal-item"><code>package.json</code> <code>files</code> 陣列補 <code>"LICENSE"</code></div>
+        <div class="goal-item">README <code>openspec-propose-design-mermaid-html</code> section 加入完整 8 種 Mermaid 圖表類型 table（中英對照 + mermaid.ai 連結）</div>
+        <div class="goal-item"><code>openspec-design-html</code> section 以一句話指回，不重複 table</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--muted)">Non-Goals</div>
+      <div class="ng-list">
+        <div class="ng-item">不修改任何 SKILL.md 邏輯</div>
+        <div class="ng-item">不修改 <code>assets/page-shell.html</code></div>
+        <div class="ng-item">不涉及 <code>openspec/specs/</code> 現有 spec 的異動</div>
+        <div class="ng-item">不執行 npm publish 或 git tag（使用者自行決定發布時機）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② Before vs After -->
+<section>
+  <div class="sec-title">Before vs After</div>
+  <div class="cmp-grid">
+    <div class="cmp-panel before">
+      <div class="cmp-hdr">⚠ Before — repo 現況</div>
+      <div class="cmp-body">
+        <div class="mermaid">
+flowchart TD
+    R["README.md"] --> T["標題"]
+    T --> NB["無徽章（版本 / 授權未顯示）"]
+    R --> S1["openspec-propose-mermaid-html section"]
+    S1 --> TBL["按需 section：inline 表格<br/>圖表類型混在一格，無連結"]
+    R --> S2["openspec-design-html section"]
+    S2 --> DUP["重複說明（未指向任何 section）"]
+    ROOT["repo 根目錄"] --> NOLIC["無 LICENSE 文件"]
+    PKG["package.json files"] --> NOLIC2["未包含 LICENSE"]
+    style NB fill:#fce8e8,stroke:#dc3545,color:#7f1d1d
+    style TBL fill:#fce8e8,stroke:#dc3545,color:#7f1d1d
+    style NOLIC fill:#fce8e8,stroke:#dc3545,color:#7f1d1d
+    style NOLIC2 fill:#fce8e8,stroke:#dc3545,color:#7f1d1d
+        </div>
+      </div>
+    </div>
+    <div class="cmp-panel after">
+      <div class="cmp-hdr">✅ After — 改善後</div>
+      <div class="cmp-body">
+        <div class="mermaid">
+flowchart TD
+    R["README.md"] --> T["標題"]
+    T --> B1["GitHub release badge"]
+    T --> B2["MIT license badge"]
+    R --> S1["openspec-propose-mermaid-html section"]
+    S1 --> TBL["按需 bullet list<br/>+ 8 種圖表 table（中英 + 連結）"]
+    R --> S2["openspec-design-html section"]
+    S2 --> PTR["一句指回 → 圖表 table"]
+    ROOT["repo 根目錄"] --> LIC["LICENSE（MIT 2026）"]
+    PKG["package.json files"] --> LICF["包含 LICENSE"]
+    style B1 fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style B2 fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style TBL fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style LIC fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style LICF fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style PTR fill:#dcfce7,stroke:#16a34a,color:#14532d
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ Decisions + Risks -->
+<section>
+  <div class="sec-title">技術決策 ／ 風險</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue)">技術決策</div>
+      <div class="dec-item">
+        <div class="dec-title">決策 1 ｜版本徽章選 GitHub release badge</div>
+        <div class="item-body">使用 <code>img.shields.io/github/v/release/…</code>，在打 git tag 後自動同步版本號，不需要手動改 README。授權徽章用 <code>img.shields.io/github/license/…</code>，從 <code>LICENSE</code> 文件自動讀取授權類型。</div>
+        <div class="alt">✗ 棄用：靜態 badge → 每次版本升級要手動改 README，容易遺漏</div>
+        <div class="alt">✗ 棄用：npm badge → repo 尚未 publish，badge 顯示 404</div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-title">決策 2 ｜圖表 table 只在 propose section 放一次</div>
+        <div class="item-body"><code>openspec-design-html</code> 和 <code>openspec-propose-design-mermaid-html</code> 使用完全相同的 HTML 產生邏輯。重複放 table 代表日後新增圖表類型要改兩處，維護成本加倍。<code>openspec-design-html</code> section 改為一句引導 + 錨點連結。</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--yellow)">風險</div>
+      <div class="risk-item">
+        <div class="risk-title">⚠ GitHub release badge 需要 git tag</div>
+        <div class="item-body">若 repo 目前沒有任何 release tag，版本徽章顯示「No releases」而非版本號。</div>
+        <div class="mitigation">→ task 4.2 補充說明：實作後執行 <code>git tag v1.2.0 &amp;&amp; git push origin v1.2.0</code> 建立第一個 tag</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-title">⚠ openspec-design-html 錨點連結依賴 section 標題文字</div>
+        <div class="item-body">Markdown 錨點由標題文字自動產生。若未來 <code>openspec-propose-design-mermaid-html</code> 的 section 標題被改名，<code>openspec-design-html</code> 的錨點會失效。</div>
+        <div class="mitigation">→ 低機率，純文件連結，失效後只是連結失效，不影響功能</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<div class="footer">openspec/changes/readme-badges-license-docs/design.html</div>
+</body>
+</html>

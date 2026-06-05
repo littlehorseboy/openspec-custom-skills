@@ -104,14 +104,14 @@ openspec/
 
 | 類型 Type | 中文名稱 | 文件 Docs |
 |-----------|----------|-----------|
-| `flowchart` | 流程圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/flowchart.html) |
-| `sequenceDiagram` | 序列圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/sequenceDiagram.html) |
-| `classDiagram` | 類別圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/classDiagram.html) |
-| `stateDiagram` | 狀態圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/stateDiagram.html) |
-| `erDiagram` | 實體關係圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/entityRelationshipDiagram.html) |
-| `requirementDiagram` | 需求圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/requirementDiagram.html) |
-| `treeView` | 樹狀視圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/treeView.html) |
-| `mindmap` | 心智圖 | [mermaid.ai](https://mermaid.ai/open-source/syntax/mindmap.html) |
+| `flowchart` | 流程圖 | [flowchart.html](https://mermaid.ai/open-source/syntax/flowchart.html) |
+| `sequenceDiagram` | 序列圖 | [sequenceDiagram.html](https://mermaid.ai/open-source/syntax/sequenceDiagram.html) |
+| `classDiagram` | 類別圖 | [classDiagram.html](https://mermaid.ai/open-source/syntax/classDiagram.html) |
+| `stateDiagram` | 狀態圖 | [stateDiagram.html](https://mermaid.ai/open-source/syntax/stateDiagram.html) |
+| `erDiagram` | 實體關係圖 | [entityRelationshipDiagram.html](https://mermaid.ai/open-source/syntax/entityRelationshipDiagram.html) |
+| `requirementDiagram` | 需求圖 | [requirementDiagram.html](https://mermaid.ai/open-source/syntax/requirementDiagram.html) |
+| `treeView` | 樹狀視圖 | [treeView.html](https://mermaid.ai/open-source/syntax/treeView.html) |
+| `mindmap` | 心智圖 | [mindmap.html](https://mermaid.ai/open-source/syntax/mindmap.html) |
 
 讓 reviewer 掃一眼就能理解 change 的全貌，不需要逐段讀 Markdown。  
 適合：有多個入口點、狀態轉換、資料流向需要視覺化的 change。
